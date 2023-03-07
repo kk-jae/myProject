@@ -86,7 +86,7 @@ export default function UsedItemQuestion() {
         });
         setMyIndex(-1);
         Modal.success({
-          content: "댓글이 삭제되었습니다.",
+          content: "댓글이 수정되었습니다.",
         });
       } catch (error) {
         if (error instanceof Error) {

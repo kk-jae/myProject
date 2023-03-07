@@ -13,9 +13,9 @@ import {
   FETCH_USER_LOGGEDIN,
   useQueryFetchUserLoggedIn,
 } from "../query/useQueryFetchUserLoggedIn";
+import { FETCH_USED_ITEMS } from "../query/useQueryFetchUsedItems";
 
 export default function UsedItem() {
-  const router = useRouter();
   const [imgUrl1, setImgUrl1] = useState("");
   const [imgUrl2, setImgUrl2] = useState("");
   const [uploadFile] = useMutationUploadFile();
@@ -24,7 +24,6 @@ export default function UsedItem() {
   const [deleteUseditem] = useMutationDeleteUsedItem();
   const { id } = useQueryIdChecker("usedItemId");
   const [buyUsedItem] = useMutationCreatePointTransactionOfBuyingAndSelling();
-  const { data: userData } = useQueryFetchUserLoggedIn();
 
   const onChangeUploadFile1 = async (event) => {
     const result = await uploadFile({
@@ -49,9 +48,7 @@ export default function UsedItem() {
       !data.remarks ||
       !data.contents ||
       !data.price ||
-      !imgUrl1 ||
-      // !data.useditemAddress ||
-      !data.tags
+      !imgUrl1
     ) {
       Modal.error({
         content: "내용을 모두 입력해주세요",
@@ -114,30 +111,25 @@ export default function UsedItem() {
       }
 
       if (isEditData.fetchUseditem.contents === data.contents) {
-        updateUseditemInput.contents = isEditData.fetchUseditem.contents; // 같을 때는 아무거나 상관 없음
+        updateUseditemInput.contents = isEditData.fetchUseditem.contents;
       } else {
-        updateUseditemInput.contents = data.contents; // 두개가 같지 않다면 data의 contents가 나가야함
+        updateUseditemInput.contents = data.contents;
       }
 
       if (!address) {
-        // 아무것도 수정 되지 않으면 기존 값 가져오기
         updateUseditemInput.useditemAddress.address =
           isEditData.fetchUseditem.useditemAddress.address;
       } else {
-        // 수정되면 수정된 address 가져오기 (write에서 받아옴)
         updateUseditemInput.useditemAddress.address = address;
       }
 
       if (!addressZipCode) {
-        // 아무것도 수정 되지 않으면 기존 값 가져오기
         updateUseditemInput.useditemAddress.zipcode =
           isEditData.fetchUseditem.useditemAddress.zipcode;
       } else {
-        // 수정되면 수정된 address 가져오기 (write에서 받아옴)
         updateUseditemInput.useditemAddress.zipcode = addressZipCode;
       }
 
-      // 주소 수정 : data는 안봐도됨 (register 안씀)
       try {
         await updateUseditem({
           variables: {
@@ -163,9 +155,14 @@ export default function UsedItem() {
         variables: {
           useditemId: id,
         },
+        refetchQueries: [
+          {
+            query: FETCH_USED_ITEMS,
+          },
+        ],
       });
+      window.location.replace("/usedItem/list");
       Modal.success({ content: "중고 상품이 삭제되었습니다." });
-      router.push("/usedItem/list");
     } catch (error) {
       if (error instanceof Error) {
         Modal.error({
@@ -207,7 +204,7 @@ export default function UsedItem() {
 
   const onClickBuyUsedItem = async () => {
     try {
-      const result = await buyUsedItem({
+      await buyUsedItem({
         variables: {
           useritemId: id,
         },

@@ -53,7 +53,6 @@ export default function ApolloSetting(props) {
           return fromPromise(
             getAccessToken().then((newAccessToken) => {
               setAccessToken(newAccessToken ?? "");
-
               operation.setContext({
                 headers: {
                   ...operation.getContext().headers,

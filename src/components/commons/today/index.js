@@ -15,7 +15,7 @@ export default function TodayUI() {
       const getDataLocalS = (basket) => {
         let localData = localStorage.getItem(basket);
         if (localData === null || localData === undefined) {
-          return []; // or some other default value
+          return [];
         }
         return JSON.parse(localData);
       };
@@ -32,7 +32,8 @@ export default function TodayUI() {
       ) : (
         <S.Product
           src={`https://storage.googleapis.com/${TodayUsedItem?.[0]?.images[0]}`}
-          alt={`상품명 : ${TodayUsedItem?.[0]?.name}`}
+          // alt={`상품명 : ${TodayUsedItem?.[0]?.name}`}
+          alt=" 최근 본 상품의 이미지가 없습니다."
         />
       )}
       {TodayUsedItem.length < 2 ? (
@@ -40,7 +41,8 @@ export default function TodayUI() {
       ) : (
         <S.Product
           src={`https://storage.googleapis.com/${TodayUsedItem?.[1]?.images[0]}`}
-          alt={`상품명 : ${TodayUsedItem?.[0]?.name}`}
+          // alt={`상품명 : ${TodayUsedItem?.[0]?.name}`}
+          alt="최근 본 상품의 이미지가 없습니다."
         />
       )}
       {TodayUsedItem.length < 3 ? (
@@ -48,22 +50,10 @@ export default function TodayUI() {
       ) : (
         <S.Product
           src={`https://storage.googleapis.com/${TodayUsedItem?.[2]?.images[0]}`}
-          alt={`상품명 : ${TodayUsedItem?.[0]?.name}`}
+          // alt={`상품명 : ${TodayUsedItem?.[0]?.name}`}
+          alt="최근 본 상품의 이미지가 없습니다."
         />
       )}
-      {/* <S.Product
-        src={`https://storage.googleapis.com/${TodayUsedItem?.[0].images[0]}`}
-        alt={TodayUsedItem?.[0].name}
-      /> */}
-      {/* <S.Product
-        src={`https://storage.googleapis.com/${TodayUsedItem?.[1].images[0]}`}
-        alt={TodayUsedItem?.[1].name}
-      />
-
-      <S.Product
-        src={`https://storage.googleapis.com/${TodayUsedItem?.[2].images[0]}`}
-        alt={TodayUsedItem?.[2].name}
-      /> */}
     </S.Container>
   );
 }
