@@ -79,7 +79,7 @@ export const Top_right_bottom = styled.div`
 export const Top_right_bottom_like = styled.div`
   width: 152px;
   height: 100px;
-  /* background-color: #c9c9c9; */
+  background-color: #c9c9c9;
   font-weight: 700;
   font-size: 30px;
   color: #ffffff;
@@ -87,6 +87,7 @@ export const Top_right_bottom_like = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
   cursor: pointer;
 `;
 
