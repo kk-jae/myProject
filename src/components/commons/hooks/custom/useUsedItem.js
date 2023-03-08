@@ -70,7 +70,6 @@ export default function UsedItem() {
               address,
               addressDetail: data.addressDetail,
             },
-            tags: data.tags,
           },
         },
       });
