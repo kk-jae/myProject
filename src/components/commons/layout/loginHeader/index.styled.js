@@ -9,8 +9,10 @@ export const Container = styled.div`
   align-items: center;
 `;
 
-export const Logo = styled.img`
-  object-fit: cover;
-  padding-left: 64px;
+export const Text = styled.span`
+  font-size: 45px;
+  color: white;
+  font-family: "main";
+  padding-left: 5%;
   cursor: pointer;
 `;

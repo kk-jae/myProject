@@ -136,9 +136,10 @@ export const Today = styled.div`
   height: 373px;
   background-color: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  position: absolute;
+  position: fixed;
   left: 1720px;
-  top: 219px;
+  /* top: 219px; */
+  top: 330px;
   display: flex;
   flex-direction: column;
   justify-content: center;

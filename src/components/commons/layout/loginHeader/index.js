@@ -6,10 +6,9 @@ export default function LoginHeaderPage() {
 
   return (
     <S.Container>
-      <S.Logo
-        src="/header/whitelogo 1.png"
-        onClick={onClickMoveToPage("/usedItem/list")}
-      />
+      <S.Text onClick={onClickMoveToPage("/usedItem/list")}>
+        권현재의 중고마켓
+      </S.Text>
     </S.Container>
   );
 }

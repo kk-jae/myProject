@@ -2,7 +2,7 @@ import { DownOutlined } from "@ant-design/icons";
 import { gql, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import Script from "next/script";
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import Modal from "react-modal";
 import { useQueryFetchUserLoggedIn } from "../hooks/query/useQueryFetchUserLoggedIn";
 import * as S from "./index.styled";
